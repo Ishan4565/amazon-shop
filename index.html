@@ -1,0 +1,2090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Amazon Finds - ishandh454</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FF9900;
+            --secondary: #146EB4;
+            --dark: #1a1a1a;
+            --light: #f5f5f5;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #fff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, var(--dark) 0%, #1f3a5f 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            margin-bottom: 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* CATEGORIES GRID */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .category-card {
+            background: white;
+            border: 2px solid var(--light);
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .category-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 25px rgba(255, 153, 0, 0.2);
+            transform: translateY(-5px);
+            background: #fffbf7;
+        }
+
+        .category-header {
+            flex: 1;
+        }
+
+        .category-header h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .product-count {
+            font-size: 0.85rem;
+            color: #999;
+            font-weight: 500;
+        }
+
+        .category-chevron {
+            font-size: 1.8rem;
+            color: var(--primary);
+            font-weight: bold;
+            transition: transform 0.3s ease;
+            margin-left: 15px;
+        }
+
+        .category-card:hover .category-chevron {
+            transform: translateX(5px);
+        }
+
+        /* PRODUCTS SECTION */
+        .products-section {
+            display: none;
+            margin-bottom: 80px;
+            animation: slideDown 0.4s ease-out;
+        }
+
+        .products-section.active {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--light);
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            color: var(--dark);
+        }
+
+        .close-btn {
+            background: var(--light);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #999;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* PRODUCTS CONTAINER */
+        .products-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .product-item {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .product-card-inner {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 20px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .product-card-inner:hover {
+            border-color: var(--primary);
+            box-shadow: 0 12px 35px rgba(255, 153, 0, 0.2);
+            transform: translateY(-8px);
+        }
+
+        .product-header {
+            margin-bottom: 15px;
+            flex: 1;
+        }
+
+        .product-header h4 {
+            font-size: 1rem;
+            color: var(--dark);
+            line-height: 1.5;
+            font-weight: 600;
+        }
+
+        .product-details {
+            margin-bottom: 15px;
+        }
+
+        .price-rating {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .price {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .rating {
+            font-size: 0.95rem;
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        .reviews {
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        .shop-btn {
+            background: linear-gradient(135deg, var(--primary), #ff8c00);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-size: 1rem;
+            margin-top: auto;
+            width: 100%;
+            font-family: inherit;
+        }
+
+        .shop-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 153, 0, 0.4);
+            background: linear-gradient(135deg, #ff8c00, var(--primary));
+        }
+
+        .shop-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 80px;
+            border-radius: 15px;
+        }
+
+        footer p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .products-container {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header h2 {
+                font-size: 1.5rem;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .product-card-inner {
+                padding: 15px;
+            }
+
+            .price {
+                font-size: 1.4rem;
+            }
+
+            .shop-btn {
+                padding: 14px 20px;
+                font-size: 1rem;
+            }
+        }
+
+        /* SCROLL */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--light);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🛍️ Best Amazon Finds</h1>
+            <p>Handpicked products with real reviews & best prices | Updated Daily</p>
+        </header>
+
+        <div class="categories-grid" id="categoriesGrid">
+            
+    <div class="category-card" onclick="toggleCategory('Best Air Purifiers')">
+        <div class="category-header">
+            <h3>Best Air Purifiers</h3>
+            <span class="product-count">3 Products</span>
+        </div>
+        <div class="category-chevron">›</div>
+    </div>
+    
+    <div class="category-card" onclick="toggleCategory('Best Can Openers')">
+        <div class="category-header">
+            <h3>Best Can Openers</h3>
+            <span class="product-count">5 Products</span>
+        </div>
+        <div class="category-chevron">›</div>
+    </div>
+    
+    <div class="category-card" onclick="toggleCategory('Best Electric Scrubber')">
+        <div class="category-header">
+            <h3>Best Electric Scrubber</h3>
+            <span class="product-count">5 Products</span>
+        </div>
+        <div class="category-chevron">›</div>
+    </div>
+    
+    <div class="category-card" onclick="toggleCategory('Best Haircare Products')">
+        <div class="category-header">
+            <h3>Best Haircare Products</h3>
+            <span class="product-count">5 Products</span>
+        </div>
+        <div class="category-chevron">›</div>
+    </div>
+    
+    <div class="category-card" onclick="toggleCategory('Best Scented Candles')">
+        <div class="category-header">
+            <h3>Best Scented Candles</h3>
+            <span class="product-count">5 Products</span>
+        </div>
+        <div class="category-chevron">›</div>
+    </div>
+    
+    <div class="category-card" onclick="toggleCategory('Best Vegetable Choppers')">
+        <div class="category-header">
+            <h3>Best Vegetable Choppers</h3>
+            <span class="product-count">5 Products</span>
+        </div>
+        <div class="category-chevron">›</div>
+    </div>
+    
+    <div class="category-card" onclick="toggleCategory('Glow up skincare essentials')">
+        <div class="category-header">
+            <h3>Glow up skincare essentials</h3>
+            <span class="product-count">5 Products</span>
+        </div>
+        <div class="category-chevron">›</div>
+    </div>
+    
+    <div class="category-card" onclick="toggleCategory('Most have Perfumes for Men')">
+        <div class="category-header">
+            <h3>Most have Perfumes for Men</h3>
+            <span class="product-count">5 Products</span>
+        </div>
+        <div class="category-chevron">›</div>
+    </div>
+    
+    <div class="category-card" onclick="toggleCategory('Most have Perfumes for Women')">
+        <div class="category-header">
+            <h3>Most have Perfumes for Women</h3>
+            <span class="product-count">5 Products</span>
+        </div>
+        <div class="category-chevron">›</div>
+    </div>
+    
+    <div class="category-card" onclick="toggleCategory('New Airpods 4')">
+        <div class="category-header">
+            <h3>New Airpods 4</h3>
+            <span class="product-count">1 Products</span>
+        </div>
+        <div class="category-chevron">›</div>
+    </div>
+    
+    <div class="category-card" onclick="toggleCategory('Top 3 Gamer Setup Essentials')">
+        <div class="category-header">
+            <h3>Top 3 Gamer Setup Essentials</h3>
+            <span class="product-count">3 Products</span>
+        </div>
+        <div class="category-chevron">›</div>
+    </div>
+    
+    <div class="category-card" onclick="toggleCategory('Top 5 Coffee Makers')">
+        <div class="category-header">
+            <h3>Top 5 Coffee Makers</h3>
+            <span class="product-count">5 Products</span>
+        </div>
+        <div class="category-chevron">›</div>
+    </div>
+    
+    <div class="category-card" onclick="toggleCategory('Top 5 Skincare essentials')">
+        <div class="category-header">
+            <h3>Top 5 Skincare essentials</h3>
+            <span class="product-count">5 Products</span>
+        </div>
+        <div class="category-chevron">›</div>
+    </div>
+    
+    <div class="category-card" onclick="toggleCategory('Top 5 Vacuum Cleaners')">
+        <div class="category-header">
+            <h3>Top 5 Vacuum Cleaners</h3>
+            <span class="product-count">5 Products</span>
+        </div>
+        <div class="category-chevron">›</div>
+    </div>
+    
+    <div class="category-card" onclick="toggleCategory('Top 5 Water Bottles')">
+        <div class="category-header">
+            <h3>Top 5 Water Bottles</h3>
+            <span class="product-count">5 Products</span>
+        </div>
+        <div class="category-chevron">›</div>
+    </div>
+    
+    <div class="category-card" onclick="toggleCategory('Top 5 desk essentials for students')">
+        <div class="category-header">
+            <h3>Top 5 desk essentials for students</h3>
+            <span class="product-count">5 Products</span>
+        </div>
+        <div class="category-chevron">›</div>
+    </div>
+    
+    <div class="category-card" onclick="toggleCategory('Top Coffee Tumblers & Travel Mugs')">
+        <div class="category-header">
+            <h3>Top Coffee Tumblers & Travel Mugs</h3>
+            <span class="product-count">5 Products</span>
+        </div>
+        <div class="category-chevron">›</div>
+    </div>
+    
+        </div>
+
+        <div id="productsContainer">
+            
+    <div class="products-section" id="section-best-air-purifiers">
+        <div class="section-header">
+            <h2>Best Air Purifiers</h2>
+            <button class="close-btn" onclick="toggleCategory('Best Air Purifiers')">✕</button>
+        </div>
+        <div class="products-container">
+            
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Blueair Blue Pure 311i Max Air Purifier</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$139.66</span>
+                        <span class="rating">⭐ 4.5</span>
+                    </div>
+                    <span class="reviews">1k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/3PEjiO8" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Blueair Blue Pure 211i Max Air Purifier</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$181.99</span>
+                        <span class="rating">⭐ 4.5</span>
+                    </div>
+                    <span class="reviews">3k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/40ZeIfJ" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Winix 5510 Air Purifier</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$125.35</span>
+                        <span class="rating">⭐ 4.6</span>
+                    </div>
+                    <span class="reviews">31k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/48f7A2A" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        </div>
+    </div>
+    
+    <div class="products-section" id="section-best-can-openers">
+        <div class="section-header">
+            <h2>Best Can Openers</h2>
+            <button class="close-btn" onclick="toggleCategory('Best Can Openers')">✕</button>
+        </div>
+        <div class="products-container">
+            
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>KitchenAid Stainless Steel Can Opener - Sharp & Easy</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$11.99</span>
+                        <span class="rating">⭐ 4.5</span>
+                    </div>
+                    <span class="reviews">89k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/3NCe2db" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Hamilton Beach Electric Can Opener - Smooth & Safe</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$30.65</span>
+                        <span class="rating">⭐ 4.6</span>
+                    </div>
+                    <span class="reviews">83k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4lWENWa" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>OXO Good Grips Manual Can Opener - Easy & Reliable</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$11.09</span>
+                        <span class="rating">⭐ 4.5</span>
+                    </div>
+                    <span class="reviews">89k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4bWGiiA" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>OXO Good Grips Twisting Jar Opener with Basepad</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$12.99</span>
+                        <span class="rating">⭐ 4.4</span>
+                    </div>
+                    <span class="reviews">3k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/48hbNCV" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Hamilton Beach Electric Can Opener - Smooth Edge with Scissors</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$40.9</span>
+                        <span class="rating">⭐ 4.7</span>
+                    </div>
+                    <span class="reviews">12k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4v10mJw" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        </div>
+    </div>
+    
+    <div class="products-section" id="section-best-electric-scrubber">
+        <div class="section-header">
+            <h2>Best Electric Scrubber</h2>
+            <button class="close-btn" onclick="toggleCategory('Best Electric Scrubber')">✕</button>
+        </div>
+        <div class="products-container">
+            
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Bissell SmartSteam Mop</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$96.37</span>
+                        <span class="rating">⭐ 4</span>
+                    </div>
+                    <span class="reviews">9k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4dRD7LG" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Rubbermaid Power Scrubber</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$15.82</span>
+                        <span class="rating">⭐ 4.4</span>
+                    </div>
+                    <span class="reviews">37k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4sKA3FU" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Bissell SpinWave Pet</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$96.37</span>
+                        <span class="rating">⭐ 4.4</span>
+                    </div>
+                    <span class="reviews">4k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/41HfLB3" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>The Miracle Scrubber Kit</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$18.41</span>
+                        <span class="rating">⭐ 4.2</span>
+                    </div>
+                    <span class="reviews">2k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4m87oYY" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>SpinWave Expert Mop</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$83.76</span>
+                        <span class="rating">⭐ 4.5</span>
+                    </div>
+                    <span class="reviews">8k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4bLBFI0" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        </div>
+    </div>
+    
+    <div class="products-section" id="section-best-haircare-products">
+        <div class="section-header">
+            <h2>Best Haircare Products</h2>
+            <button class="close-btn" onclick="toggleCategory('Best Haircare Products')">✕</button>
+        </div>
+        <div class="products-container">
+            
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Nizoral Anti-Dandruff Shampoo 1%</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$22.07</span>
+                        <span class="rating">⭐ 4.6</span>
+                    </div>
+                    <span class="reviews">109k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4bPNuyt" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Native Coconut & Vanilla Shampoo & Conditioner</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$10.99</span>
+                        <span class="rating">⭐ 4.4</span>
+                    </div>
+                    <span class="reviews">12k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4djFwic" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>OGX Bond Protein Heat Protect Spray</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$14.98</span>
+                        <span class="rating">⭐ 4.5</span>
+                    </div>
+                    <span class="reviews">3k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/41nfDH7" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Monday Haircare Original Dry Shampoo</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$16.49</span>
+                        <span class="rating">⭐ 4.4</span>
+                    </div>
+                    <span class="reviews">6k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4m0nxj2" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Samnyte Hair Wax Stick</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$4.39</span>
+                        <span class="rating">⭐ 4.4</span>
+                    </div>
+                    <span class="reviews">59k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4bT5Ehl" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        </div>
+    </div>
+    
+    <div class="products-section" id="section-best-scented-candles">
+        <div class="section-header">
+            <h2>Best Scented Candles</h2>
+            <button class="close-btn" onclick="toggleCategory('Best Scented Candles')">✕</button>
+        </div>
+        <div class="products-container">
+            
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Stonebriar Unscented White Tealight Candles</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$12.99</span>
+                        <span class="rating">⭐ 4.7</span>
+                    </div>
+                    <span class="reviews">12k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4t07THf" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Yankee Candle Sage & Citrus Large Jar</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$16.14</span>
+                        <span class="rating">⭐ 4.5</span>
+                    </div>
+                    <span class="reviews">1k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4tlfRdK" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Bath & Body Works Mahogany Teakwood</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$27.99</span>
+                        <span class="rating">⭐ 4.5</span>
+                    </div>
+                    <span class="reviews">7k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4uZN2ox" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>WoodWick Warm Woods Trilogy Candle</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$14.08</span>
+                        <span class="rating">⭐ 4.6</span>
+                    </div>
+                    <span class="reviews">12k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4s6an5A" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Tyler Diva Scented Candle</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$22.3</span>
+                        <span class="rating">⭐ 4.6</span>
+                    </div>
+                    <span class="reviews">3k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/412Czes" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        </div>
+    </div>
+    
+    <div class="products-section" id="section-best-vegetable-choppers">
+        <div class="section-header">
+            <h2>Best Vegetable Choppers</h2>
+            <button class="close-btn" onclick="toggleCategory('Best Vegetable Choppers')">✕</button>
+        </div>
+        <div class="products-container">
+            
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>The All-In-One Kitchen Essential</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$6.44</span>
+                        <span class="rating">⭐ 4.8</span>
+                    </div>
+                    <span class="reviews">64k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/412Ok4E" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>The Perfect 4-in-1 Mini Chopper</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$27.55</span>
+                        <span class="rating">⭐ 4.6</span>
+                    </div>
+                    <span class="reviews">24k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4bHBcbl" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>350W High-Power Veggie Chopper</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$21.54</span>
+                        <span class="rating">⭐ 4.6</span>
+                    </div>
+                    <span class="reviews">35k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4bGTBVz" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>OXO Safe-Grip Handheld Slicer</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$16.06</span>
+                        <span class="rating">⭐ 4.5</span>
+                    </div>
+                    <span class="reviews">19k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4bT9EhR" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>OXO Easy-Prep Vegetable Chopper</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$19.73</span>
+                        <span class="rating">⭐ 4.5</span>
+                    </div>
+                    <span class="reviews">5k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4s4b13g" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        </div>
+    </div>
+    
+    <div class="products-section" id="section-glow-up-skincare-essentials">
+        <div class="section-header">
+            <h2>Glow up skincare essentials</h2>
+            <button class="close-btn" onclick="toggleCategory('Glow up skincare essentials')">✕</button>
+        </div>
+        <div class="products-container">
+            
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>CeraVe AM Moisturizing Lotion SPF 50</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$15</span>
+                        <span class="rating">⭐ 4.6</span>
+                    </div>
+                    <span class="reviews">3k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4smVEmZ" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Vanicream Daily Facial Moisturizer</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$15.14</span>
+                        <span class="rating">⭐ 4.6</span>
+                    </div>
+                    <span class="reviews">23k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4djsUrb" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Vanicream Moisturizing Skin Cream</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$25.37</span>
+                        <span class="rating">⭐ 4.6</span>
+                    </div>
+                    <span class="reviews">48k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/486M7Jd" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Cetaphil Hydrating Moisturizing Lotion</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$12.38</span>
+                        <span class="rating">⭐ 4.7</span>
+                    </div>
+                    <span class="reviews">15k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/3PDtjem" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>CeraVe Moisturizing Cream</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$19.99</span>
+                        <span class="rating">⭐ 4.7</span>
+                    </div>
+                    <span class="reviews">143k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/3PFltkr" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        </div>
+    </div>
+    
+    <div class="products-section" id="section-most-have-perfumes-for-men">
+        <div class="section-header">
+            <h2>Most have Perfumes for Men</h2>
+            <button class="close-btn" onclick="toggleCategory('Most have Perfumes for Men')">✕</button>
+        </div>
+        <div class="products-container">
+            
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Afnan 9PM Eau de Parfum for Men</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$24</span>
+                        <span class="rating">⭐ 4.6</span>
+                    </div>
+                    <span class="reviews">25k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4rZrXIp" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Lattafa Asad Bourbon Unisex EDP</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$19</span>
+                        <span class="rating">⭐ 4.6</span>
+                    </div>
+                    <span class="reviews">5k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4dPMsnc" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Versace Eros Eau de Toilette</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$6.26</span>
+                        <span class="rating">⭐ 4.6</span>
+                    </div>
+                    <span class="reviews">21k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/3PGoKQr" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Lattafa Angham Unisex EDP</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$26.8</span>
+                        <span class="rating">⭐ 4.5</span>
+                    </div>
+                    <span class="reviews">6k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4taEZDI" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Gucci Guilty Eau de Toilette for Men</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$76.09</span>
+                        <span class="rating">⭐ 4.7</span>
+                    </div>
+                    <span class="reviews">5k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4s1cdEA" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        </div>
+    </div>
+    
+    <div class="products-section" id="section-most-have-perfumes-for-women">
+        <div class="section-header">
+            <h2>Most have Perfumes for Women</h2>
+            <button class="close-btn" onclick="toggleCategory('Most have Perfumes for Women')">✕</button>
+        </div>
+        <div class="products-container">
+            
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Lattafa Opulent Dubai Unisex EDP</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$16.99</span>
+                        <span class="rating">⭐ 4.4</span>
+                    </div>
+                    <span class="reviews">1k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4djv8a1" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Lattafa Rave Now EDP for Women</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$29.99</span>
+                        <span class="rating">⭐ 4.3</span>
+                    </div>
+                    <span class="reviews">6k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4bD8Wqc" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Lattafa Khamrah Unisex EDP</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$27.99</span>
+                        <span class="rating">⭐ 4.5</span>
+                    </div>
+                    <span class="reviews">30k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4sF9MbQ" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Lattafa Eclaire EDP for Women</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$28.19</span>
+                        <span class="rating">⭐ 4.3</span>
+                    </div>
+                    <span class="reviews">9k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4bPNi2d" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Lattafa Yara Candy for Women</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$19.2</span>
+                        <span class="rating">⭐ 4.4</span>
+                    </div>
+                    <span class="reviews">7k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4sGupV8" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        </div>
+    </div>
+    
+    <div class="products-section" id="section-new-airpods-4">
+        <div class="section-header">
+            <h2>New Airpods 4</h2>
+            <button class="close-btn" onclick="toggleCategory('New Airpods 4')">✕</button>
+        </div>
+        <div class="products-container">
+            
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>NEW AirPods 4: The Best Open-Ear ANC Ever!</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$94.69</span>
+                        <span class="rating">⭐ 4.5</span>
+                    </div>
+                    <span class="reviews">45k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4bGUkGh" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        </div>
+    </div>
+    
+    <div class="products-section" id="section-top-3-gamer-setup-essentials">
+        <div class="section-header">
+            <h2>Top 3 Gamer Setup Essentials</h2>
+            <button class="close-btn" onclick="toggleCategory('Top 3 Gamer Setup Essentials')">✕</button>
+        </div>
+        <div class="products-container">
+            
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Logitech G502 HERO Gaming Mouse</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$85.87</span>
+                        <span class="rating">⭐ 4.6</span>
+                    </div>
+                    <span class="reviews">57K+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4c0SC1z" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Logitech MX Vertical Ergonomic Mouse</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$65.19</span>
+                        <span class="rating">⭐ 4.3</span>
+                    </div>
+                    <span class="reviews">14k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/3PEnvBq" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Logitech G Pro X Superlight 2</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$104.03</span>
+                        <span class="rating">⭐ 4.5</span>
+                    </div>
+                    <span class="reviews">2k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/3PBtSW4" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        </div>
+    </div>
+    
+    <div class="products-section" id="section-top-5-coffee-makers">
+        <div class="section-header">
+            <h2>Top 5 Coffee Makers</h2>
+            <button class="close-btn" onclick="toggleCategory('Top 5 Coffee Makers')">✕</button>
+        </div>
+        <div class="products-container">
+            
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Presto Electric Coffee Percolator - 12 Cup Stainless Steel</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$64.13</span>
+                        <span class="rating">⭐ 4.4</span>
+                    </div>
+                    <span class="reviews">19k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4s3LxTS" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Keurig K-Classic Single Serve Coffee Maker - 3 Brew Sizes</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$98.14</span>
+                        <span class="rating">⭐ 4.5</span>
+                    </div>
+                    <span class="reviews">109k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4bEEkEO" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Keurig K-Express Single Serve Coffee Maker - Strong Brew</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$55.22</span>
+                        <span class="rating">⭐ 4.2</span>
+                    </div>
+                    <span class="reviews">46k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/3NMayov" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Keurig K-Elite Single Serve Coffee Maker - Strength & Temperature Control</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$98.14</span>
+                        <span class="rating">⭐ 4.6</span>
+                    </div>
+                    <span class="reviews">70k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4m2GwcT" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Cuisinart Electric Burr Coffee Grinder - 18 Position Selector</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$41.09</span>
+                        <span class="rating">⭐ 4.4</span>
+                    </div>
+                    <span class="reviews">48k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/3PU7lUp" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        </div>
+    </div>
+    
+    <div class="products-section" id="section-top-5-skincare-essentials">
+        <div class="section-header">
+            <h2>Top 5 Skincare essentials</h2>
+            <button class="close-btn" onclick="toggleCategory('Top 5 Skincare essentials')">✕</button>
+        </div>
+        <div class="products-container">
+            
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Nexcare Acne Patch</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$18.99</span>
+                        <span class="rating">⭐ 4.5</span>
+                    </div>
+                    <span class="reviews">355 reviews</span>
+                </div>
+                <a href="https://amzn.to/3PRHEnn" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Thayers BHA Acne Toner</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$16.5</span>
+                        <span class="rating">⭐ 4.6</span>
+                    </div>
+                    <span class="reviews">3k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4m03cKt" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Alba Botanica Acnedote</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$12.44</span>
+                        <span class="rating">⭐ 4.6</span>
+                    </div>
+                    <span class="reviews">5k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4uBeAAD" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>dearcloud Hydrocolloid Patches</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$14.99</span>
+                        <span class="rating">⭐ 4.4</span>
+                    </div>
+                    <span class="reviews">113 reviews</span>
+                </div>
+                <a href="https://amzn.to/3NC8Dmp" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Ichthammol Ointment for  Plant Irritations, Splinter, Slivers, Acne, Boils, Ingrown Hairs & Nails, Bug Bites & Stings</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$30</span>
+                        <span class="rating">⭐ 4.6</span>
+                    </div>
+                    <span class="reviews">1k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4s431iK" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        </div>
+    </div>
+    
+    <div class="products-section" id="section-top-5-vacuum-cleaners">
+        <div class="section-header">
+            <h2>Top 5 Vacuum Cleaners</h2>
+            <button class="close-btn" onclick="toggleCategory('Top 5 Vacuum Cleaners')">✕</button>
+        </div>
+        <div class="products-container">
+            
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Shark Rocket Ultra-Light Corded Vacuum</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$109.99</span>
+                        <span class="rating">⭐ 4.5</span>
+                    </div>
+                    <span class="reviews">11K+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4bPQr0w" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Eureka PowerSpeed Upright Vacuum Cleaner</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$76.51</span>
+                        <span class="rating">⭐ 4.2</span>
+                    </div>
+                    <span class="reviews">5K+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4de3oDN" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Shark Rocket Pet Corded Stick Vacuum</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$109.00</span>
+                        <span class="rating">⭐ 4.5</span>
+                    </div>
+                    <span class="reviews">12K+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4sQQpgb" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Bissell Featherweight Stick Bagless Vacuum</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$39.46</span>
+                        <span class="rating">⭐ 4.2</span>
+                    </div>
+                    <span class="reviews">116K+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4s168YU" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Bissell Little Green Pet Deluxe Portable Cleaner</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$93.49</span>
+                        <span class="rating">⭐ 4.3</span>
+                    </div>
+                    <span class="reviews">11K+ reviews</span>
+                </div>
+                <a href="https://amzn.to/3POCvfR" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        </div>
+    </div>
+    
+    <div class="products-section" id="section-top-5-water-bottles">
+        <div class="section-header">
+            <h2>Top 5 Water Bottles</h2>
+            <button class="close-btn" onclick="toggleCategory('Top 5 Water Bottles')">✕</button>
+        </div>
+        <div class="products-container">
+            
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Owala FreeSip Insulated Water Bottle</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$19.43</span>
+                        <span class="rating">⭐ 4.7</span>
+                    </div>
+                    <span class="reviews">114k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/41H8TDL" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Owala FreeSip Sway 40oz Bottle</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$36.3</span>
+                        <span class="rating">⭐ 4.7</span>
+                    </div>
+                    <span class="reviews">6k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4uVQW21" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Stanley Quencher H2.0 30oz Tumbler</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$21.25</span>
+                        <span class="rating">⭐ 4.7</span>
+                    </div>
+                    <span class="reviews">88k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/3NUZ0zh" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Nalgene 32oz Wide Mouth Bottle</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$15.81</span>
+                        <span class="rating">⭐ 4.8</span>
+                    </div>
+                    <span class="reviews">51k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/41BgZOh" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Hydro Flask 32oz Wide Straw Bottle</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$21.72</span>
+                        <span class="rating">⭐ 4.7</span>
+                    </div>
+                    <span class="reviews">13k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/41AKHTD" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        </div>
+    </div>
+    
+    <div class="products-section" id="section-top-5-desk-essentials-for-students">
+        <div class="section-header">
+            <h2>Top 5 desk essentials for students</h2>
+            <button class="close-btn" onclick="toggleCategory('Top 5 desk essentials for students')">✕</button>
+        </div>
+        <div class="products-container">
+            
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>LED Desk Lamp for Students</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$30.99</span>
+                        <span class="rating">⭐ 4.6</span>
+                    </div>
+                    <span class="reviews">2k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4s8GDVF" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Blue light glasses for students</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$16.19</span>
+                        <span class="rating">⭐ 3.5</span>
+                    </div>
+                    <span class="reviews">32 reviews</span>
+                </div>
+                <a href="https://amzn.to/4bPCNfj" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Laptop stands for students</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$24.67</span>
+                        <span class="rating">⭐ 4.4</span>
+                    </div>
+                    <span class="reviews">2k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4tjeTP3" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Aesthetic planner journal for students</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$17.97</span>
+                        <span class="rating">⭐ 4.5</span>
+                    </div>
+                    <span class="reviews">17k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4cdPoJ4" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>LED strip lights</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$20.68</span>
+                        <span class="rating">⭐ 4.5</span>
+                    </div>
+                    <span class="reviews">52k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/41G2uIY" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        </div>
+    </div>
+    
+    <div class="products-section" id="section-top-coffee-tumblers-and-travel-mugs">
+        <div class="section-header">
+            <h2>Top Coffee Tumblers & Travel Mugs</h2>
+            <button class="close-btn" onclick="toggleCategory('Top Coffee Tumblers & Travel Mugs')">✕</button>
+        </div>
+        <div class="products-container">
+            
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Owala SmoothSip Slider Insulated Coffee Tumbler</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$22.74</span>
+                        <span class="rating">⭐ 4.6</span>
+                    </div>
+                    <span class="reviews">11k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/3NWMNtL" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Sungwoo Glass Coffee Cups with Bamboo Lids - 4 Pack</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$12.99</span>
+                        <span class="rating">⭐ 4.5</span>
+                    </div>
+                    <span class="reviews">2k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4bGeaS7" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>Melitta #4 Cone Coffee Filters - 600 Count Pack</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$8.99</span>
+                        <span class="rating">⭐ 4.8</span>
+                    </div>
+                    <span class="reviews">15k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4dMW4za" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>OXO Good Grips POP Container - Airtight Coffee Storage</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$9.44</span>
+                        <span class="rating">⭐ 4.6</span>
+                    </div>
+                    <span class="reviews">17k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4sIIPEo" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        <div class="product-item">
+            <div class="product-card-inner">
+                <div class="product-header">
+                    <h4>BUNN 8-12 Cup Coffee Filters - 600 Count Pack</h4>
+                </div>
+                <div class="product-details">
+                    <div class="price-rating">
+                        <span class="price">$22</span>
+                        <span class="rating">⭐ 4.9</span>
+                    </div>
+                    <span class="reviews">5k+ reviews</span>
+                </div>
+                <a href="https://amzn.to/4uYPuLZ" class="shop-btn" target="_blank" rel="noopener">
+                    Shop on Amazon →
+                </a>
+            </div>
+        </div>
+        
+        </div>
+    </div>
+    
+        </div>
+
+        <footer>
+            <p>📌 All products linked to Amazon | Affiliate Disclosure: We earn from qualifying purchases</p>
+            <p style="margin-top: 15px; font-size: 0.85rem;">Share this page with friends! <a href="https://linktr.ee/ishandh454">linktr.ee/ishandh454</a></p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleCategory(category) {
+            const safeId = category.replace(/[^a-z0-9]/gi, '-').toLowerCase();
+            const sectionId = 'section-' + safeId;
+            const section = document.getElementById(sectionId);
+            
+            if (!section) return;
+            
+            document.querySelectorAll('.products-section.active').forEach(s => {
+                if (s.id !== sectionId) s.classList.remove('active');
+            });
+            
+            section.classList.toggle('active');
+            
+            if (section.classList.contains('active')) {
+                setTimeout(() => {
+                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 50);
+            }
+        }
+    </script>
+</body>
+</html>
